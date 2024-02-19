@@ -39,18 +39,18 @@
 .POSIX:
 # what emacs is called on your system
 EMACS = emacs
-SRC="../lisp"
+SRC=../lisp
 # How to run in batch mode
 BATCH = -batch -q -no-site-file     \
 -f package-initialize \
---eval '(setq file-name-handler-alist nil gc-cons-threshold 64000000 \
-load-source-file-function  nil)' 
-DEPS= -l $(SRC)/emacspeak-preamble.el -l $(SRC)/emacspeak-loaddefs.el 
+--eval "(setq file-name-handler-alist nil gc-cons-threshold 64000000 \
+load-source-file-function  nil)" 
+DEPS= -l "$(SRC)/emacspeak-preamble.el" -l "$(SRC)/emacspeak-loaddefs.el"
 
 COMPILE =  -f batch-byte-compile
 # How to compile
 %.elc:  %.el 
-	@$(EMACS) $(BATCH)  $(DEPS)  $(COMPILE) $< &&  echo $<
+	$(EMACS) $(BATCH)  $(DEPS)  $(COMPILE) $< &&  echo $<
 
 ###   grouping files into dependent modules
 
